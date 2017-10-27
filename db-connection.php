@@ -4,72 +4,76 @@
 
 <?php
 
-	load();
+	include("Model.php");
 
-	function load(){
+	$database = new Model();
+	
+
+	//echo $database->escribir_sexo("AAA");
+
+	$datos_persona["nombre"] = "nombre";
+	$datos_persona["apellido"] = "apellido"; 
+	$datos_persona["id_sexo"] = 111; 
+	$datos_persona["id_estado_civil"] = 1;
+	$datos_persona["dni"] =111;
+	$datos_persona["telefono_fijo"] = 123123;
+	$datos_persona["telefono_celular"] = 12312; 
+	$datos_persona["objetivo_laboral"] = "el_objetivo_laboral";
+	$datos_persona["direccion_pais"] = "arg";
+	$datos_persona["direccion_provincia"] = "dir_prov";
+	$datos_persona["direccion_ciudad"]  = "ciudad";
+	$datos_persona["direccion_calle"] = "calle";
+	$datos_persona["altura"] = 1231;
+	
+	$experiencias_laborales = array(
+		0 => Array(
+				'idioma' => "ingles",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>false,
+			),
+		1 => Array(
+				'idioma'=> "español",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>true,
+			)
+
+		);
+
+	$estudios = array(
+		0 => Array(
+				'idioma' => "ingles",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>false,
+			),
+		1 => Array(
+				'idioma'=> "español",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>true,
+			)
+
+		);
+	
+
+	$datos_idiomas = array(
+		0 => Array(
+				'idioma' => "ingles",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>false,
+			),
+		1 => Array(
+				'idioma'=> "español",
+				'sabe_oral'=>true,
+				'sabe_escrito'=>true,
+			)
+
+		);
+	
 
 
+	echo "save : " . $database->save($datos_persona,null,null,$datos_idiomas);
+	//$database->load();
 
-		$host="localhost";
-		$port=3306;
-		$socket="";
-		$user="root";
-		$password="";
-		$dbname="jovenes_profesionales";
-
-		$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-			or die ('Error conectandose a la base de datos' . mysqli_connect_error());
-
-
-		$query = "SELECT p.nombre,p.apellido,s.descripcion,ec.descripcion,dni,telefono_fijo,telefono_celular,d.pais,objetivo_laboral, count(el.id_experiencia_laboral) as 'cantidad de trabajos' from personas p join sexo s on (p.id_sexo = s.id_sexo) join estado_civil ec on (ec.id_estado_civil = p.id_estado_civil) join domicilio d on (p.id_domicilio = d.id_domicilio) left join experiencia_laboral el on (el.id_persona = p.id_persona) group by p.nombre,p.apellido,s.descripcion,ec.descripcion,dni,telefono_fijo,telefono_celular,d.pais,p.objetivo_laboral";
-
-		if ($stmt = $con->prepare($query)) {
-		    $stmt->execute();
-		    $stmt->bind_result($nombre, $apellido, $descripcion, $descripcion1, $dni, $telefono_fijo, $telefono_celular, $pais, $objetivo_laboral, $id_experiencia_laboral);
-
-		            echo "<table>";
-		            echo "<tr>";
-		                echo "<th>Nombre</th>";
-		                echo "<th>Apellido</th>";
-		                echo "<th>Sexo</th>";
-		                echo "<th>Estado Civil</th>";
-		                echo "<th>DNI</th>";
-		                echo "<th>Teléfono Fijo</th>";
-		                echo "<th>Teléfono Celular</th>";
-		                echo "<th>País</th>";
-		                echo "<th>Objetivo Laboral</th>";
-						echo "<th>Cantidad de trabajos</th>";                
-		            echo "</tr>";
-		    while ($stmt->fetch()) {
-		        
-		            echo "<tr>";
-
-		                echo "<td>" . $nombre . "</td>";
-		                echo "<td>" . $apellido . "</td>";
-		                echo "<td>" . $descripcion . "</td>";
-		                echo "<td>" . $descripcion1 . "</td>";
-		                echo "<td>" . $dni . "</td>";
-		                echo "<td>" . $telefono_fijo . "</td>";
-		                echo "<td>" . $telefono_celular . "</td>";
-		                echo "<td>" . $pais . "</td>";
-		                echo "<td>" . $objetivo_laboral . "</td>";
-		                echo "<td>" . $id_experiencia_laboral . "</td>";
-
-		            echo "</tr>";
-
-		//        printf("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", $nombre, $apellido, $descripcion, $descripcion1, $dni, $telefono_fijo, $telefono_celular, $pais, $objetivo_laboral, $id_experiencia_laboral);
-
-		    }
-		    	echo "</table>";
-
-		    $stmt->close();
-		}
-
-
-		$con->close();
-
-	}
-
+	//echo '<pre>'; var_dump($item);
 ?>
 
 
