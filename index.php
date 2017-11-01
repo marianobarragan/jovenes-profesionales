@@ -1,7 +1,8 @@
 <html>
 <body>
 <?php
-
+    include("Model.php");
+    $database = new Model();
 
 /*
 	1_ El método load, encargado de traer todos los registros cargados.
@@ -16,9 +17,11 @@
   <title>Jovenes Profesionales</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -27,12 +30,12 @@
     }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+    /*.row.content {height: 450px}*/
     
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
+    /*  background-color: #f1f1f1;*/
       height: 100%;
     }
     
@@ -93,7 +96,7 @@
   </div>
 </nav>
   
-<div class="container-fluid text-center">    
+<div class="container-fluid text-center" style="padding-bottom: 1cm">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
       <!--
@@ -103,12 +106,290 @@
     </div>
     <div class="col-sm-8 text-left"> 
       <h1>Jovenes Profesionales Expo</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>El Gobierno de la Ciudad Autónoma de Buenos Aires, lanza una expo que tiene como objetivo atraer a
+        jóvenes programadores estudiantes o egresados de universidades a fines para formar parte su equipo
+        de trabajo.</p>
+        <p>
+        La promoción de dicho evento se realizará a través de una landing page, que mostrará la
+        información básica de la expo y un formulario. Los interesados en concurrir deberán ingresar sus datos
+        laborales en dicho formulario.</p>
       <hr>
       <h3>Registrate!</h3>
-      <p>Lorem ipsum...</p>
-    </div>
-    <div class="col-sm-2 sidenav">
+
+          <div class="col-lg-12">
+
+        <div id="page-wrapper">
+            <!--
+			<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"> Jovenes Profesionales</h1>
+                </div>
+                 /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <form role="form" action="db-connection" class="register" method="POST">
+                <div class="col-lg-12">
+                    <div class="panel panel-green" >
+                        <!--
+						<div class="panel-heading">
+                            Buscar
+                        </div>-->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    
+                                        <div class="form-group">
+                                            <label>DNI</label>
+                                            <input class="form-control" name="dni" placeholder="Ingrese el número" required="required">
+                                            <p class="help-block">Sin comas ni guiones.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Apellido</label>
+                                            <input class="form-control" name="apellido" placeholder="Ingrese el apellido" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nombre</label>
+                                            <input class="form-control" name="nombre" placeholder="Ingrese el nombre" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estado civil</label>
+                                            <select class="form-control" name="estado_civil" required="required">
+                                                <!--
+                                                <option>-</option>
+                                                <option>Casado</option>
+                                                <option>Soltero</option>-->
+                                                <?php
+                                                    $estados = $database->get_estado_civil();
+                                                    foreach($estados as $estado) {
+                                                        echo "<option>".$estado."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sexo</label>
+                                            <select class="form-control" name ="sexo" required="required">
+                                                <!--
+                                                <option>-</option>
+                                                <option>Masculino</option>
+                                                <option>Femenino</option>-->
+                                                
+                                                <?php
+                                                    $sexos = $database->get_sexos();
+                                                    foreach($sexos as $sexo) {
+                                                        echo "<option>".$sexo."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento</label>
+                                                <input type="text" class="form-control" placeholder="Formato AAAA-MM-DD" required="required">  
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefono Celular</label>
+                                            <input class="form-control" name="telefono_celular" placeholder="Ingrese el telefono celular">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefono Particular</label>
+                                            <input class="form-control" name="telefono_fijo" placeholder="Ingrese el telefono particular" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Dirección</label>
+                                            <input class="form-control" name="direccion_calle" placeholder="Ingrese la dirección particular" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Altura</label>
+                                            <input class="form-control" name="direccion_altura" placeholder="Ingrese la altura del domicilio" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pais</label>
+                                            <input class="form-control" name="direccion_pais" placeholder="Ingrese el país de la dirección" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Provincia</label>
+                                            <input class="form-control" name="direccion_provincia" placeholder="Ingrese la provincia de la dirección" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ciudad</label>
+                                            <input class="form-control" name="direccion_ciudad" placeholder="Ingrese la ciudad de la dirección" required="required">
+                                        </div>
+                                        
+                                        <div class="form-group" align="center">
+                                            <label>Objetivo laboral</label>
+                                            <textarea class="form-control" name="objetivo_laboral" style="height: 150;overflow: auto"></textarea>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                        <h1 style="padding-top: 0.5cm">Idiomas</h1>
+                        <h2> </h2>
+                        <div>
+                            <input type="button" value="Agregar Idioma" onClick="addRow('data_table_idioma')" /> 
+                                <input type="button" value="Eliminar Idiomas seleccionados" onClick="deleteRow('data_table_idioma')"  /> 
+                        </div>
+                        <h2> </h2>
+
+
+                        <h3> </h3>
+
+                        <div class="col-lg-12">
+                            <table id="data_table_idioma" class="form" border="0" style="border-collapse: separate; border-spacing: 15px;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input required="required" name="chk[]" checked="checked" type="checkbox">
+                                        </td>
+                                        <td>
+                                            <label>Idioma</label>
+                                            <input required="required" name="idioma_nombre[]" type="text">
+                                        </td>
+                                        <td>
+                                            <label for="sabe_oral">¿Habla el idioma?</label>
+                                            <input name="idioma_sabe_oral[]" type="checkbox">
+                                        </td>
+                                        <td>
+                                            <label for="sabe_escrito">¿Escribe el idioma?</label>
+                                            <input  name="idioma_sabe_escrito[]" type="checkbox">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>    
+                    </div>
+                    <h1 style="padding-top: 2cm">Experiencia Laboral</h1>
+                    <h3> </h3>
+                    <div>
+                        <input type="button" value="Agregar Experiencia Laboral" onClick="addRow('data_table_experiencia')" /> 
+                        <input type="button" value="Eliminar Experiencia Laboral" onClick="deleteRow('data_table_experiencia')"  /> 
+                    </div>
+                    <div class="col-lg-12" style = "overflow: auto;display:inline-block;">
+                        <table id="data_table_experiencia" class="form" border="0" style="border-collapse: separate; border-spacing: 15px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input required="required" name="chk[]" checked="checked" type="checkbox">
+                                    </td>
+
+                                    <td >
+                                        <label style="display: inline-block">Empresa</label>
+                                        <input required="required" name="experiencia_laboral_empresa[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Actividad de la empresa</label>
+                                        <input required="required" name="experiencia_laboral_actividad[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Puesto</label>
+                                        <input required="required" name="experiencia_laboral_puesto[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Nivel</label>
+                                        <input required="required" name="experiencia_laboral_nivel[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Pais</label>
+                                        <input required="required" name="experiencia_laboral_pais[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Inicio Actividad</label>
+                                        <input required="required" name="experiencia_laboral_inicio_actividad[]" type="text" placeholder="Formato AAAA-MM-DD">
+                                    </td>
+                                    <td>
+                                        <label>Fin Actividad</label>
+                                        <input name="experiencia_laboral_fin_actividad[]" type="text" placeholder="Formato AAAA-MM-DD">
+                                    </td>
+                                    <td>
+                                        <label>Área del puesto</label>
+                                        <input required="required" name="experiencia_laboral_area_del_puesto[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Descripción del trabajo</label>
+                                        <input required="required" name="experiencia_laboral_descripcion[]" type="text">
+                                    </td>
+                                    <!--
+                                    <td>
+                                        <label>Empresa</label>
+                                        <input required="required" name="empresa[]" type="text">
+                                    </td>
+                                    -->
+                                    <td>
+                                        <label>Cantidad de personas a cargo</label>
+                                        <input required="required" name="experiencia_laboral_cantidad_personas_a_cargo[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Persona de referencia</label>
+                                        <input required="required" name="experiencia_laboral_nombre_persona_de_referencia[]" type="text">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h1 style="padding-top: 3cm">Estudios Previos</h1>
+                    <h2> </h2>
+                    <div>
+                        <input type="button" value="Agregar Estudios" onClick="addRow('data_table_estudios')" /> 
+                        <input type="button" value="Eliminar Estudios" onClick="deleteRow('data_table_estudios')"  /> 
+                    </div>
+                    <h2> </h2>
+                    <div class="col-lg-12" style = "overflow: auto">
+                        <table id="data_table_estudios" class="form" border="0" style="border-collapse: separate; border-spacing: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input required="required" name="chk[]" checked="checked" type="checkbox">
+                                    </td>
+
+                                    <td >
+                                        <label >Casa de estudios</label>
+                                        <input required="required" name="estudio_casa_de_estudios[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Nivel</label>
+                                        <input required="required" name="estudio_nivel[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Especialidad</label>
+                                        <input required="required" name="estudio_especialidad[]" type="text">
+                                    </td>
+                                    <td>
+                                        <label>Inicio de estudios</label>
+                                        <input required="required" name="estudio_inicio_estudios[]" type="text" placeholder="Formato AAAA-MM-DD">
+                                    </td>
+                                    <td>
+                                        <label>Fin de estudios</label>
+                                        <input name="estudio_fin_estudios[]" type="text" placeholder="Formato AAAA-MM-DD">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel -->
+                    <div style = "padding-top: 3cm">
+                        <!--
+                        <input class="submit" type="submit" value="Confirmar Inscripción" onClick="hacerAlgo()" style="float: right;">
+                        <button type="button" class="btn btn-primary" type="submit" style="float: right;" >Confirmar Inscripción</button>
+                        
+
+                        <input type="button" class="btn btn-primary" value="Confirmar Inscripción" style="float: right;">
+                        
+-->
+                    </div>
+
+                    </div>
+            <!-- /.row -->
+                </div>
+                <!-- /.col-lg-12 -->
+                <input type="button" class="btn btn-primary" value="Confirmar Inscripción" style="float: right;">
+                <input class="submit" type="submit" value="Confirm &raquo;" />
+                </form>
+            </div>
+            <!-- /.row -->
+        </div>
       <!--
       <div class="well">
         <p>ADS</p>
@@ -117,537 +398,43 @@
         <p>ADS</p>
       </div>-->
     </div>
+    </div>
+
   </div>
 </div>
+<?php var_dump($_POST); ?><br>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <p>2017</p>
 </footer>
 
 </body>
 </html>
 
 
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"> Jovenes Profesionales</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            Buscar
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>DNI</label>
-                                            <input class="form-control" placeholder="Ingrese el número">
-                                            <p class="help-block">Sin comas ni guiones.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Apellido</label>
-                                            <input class="form-control" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input class="form-control" >
-                                        </div>
-                                        <div class="form-group">
-                                        <label>Estado civil</label>
-                                        <select class="form-control">
-                                            <option>-</option>
-                                            <option>Casado</option>
-                                            <option>Soltero</option>
-                                        </select>
-                                    </div>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-3">
 
-                                        <div class="form-group" align="center">
-                                            <label>Fecha de nacimiento</label>
-                                                <input type="text" class="form-control">
-                                        </div>
-                                </div>
-                                <!-- /.col-lg-3 (nested) -->
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>Checkboxes</label>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Checkbox 1
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 2
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" value="">Checkbox 3
-                                                </label>
-                                            </div>
-                                    </div>
-                                        <div class="form-group" align="center">
-                                            <button type="submit" class="btn btn-primary">Buscar</button>
-                                        </div>
-                                </div>
-                                <!-- /.col-lg-3 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Resultados
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td class="center">5.5</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td class="center">6</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 7</td>
-                                        <td>Win XP SP2+</td>
-                                        <td class="center">7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Trident</td>
-                                        <td>AOL browser (AOL desktop)</td>
-                                        <td>Win XP</td>
-                                        <td class="center">6</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 2.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Firefox 3.0</td>
-                                        <td>Win 2k+ / OSX.3+</td>
-                                        <td class="center">1.9</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Camino 1.0</td>
-                                        <td>OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Camino 1.5</td>
-                                        <td>OSX.3+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Netscape 7.2</td>
-                                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Netscape Browser 8</td>
-                                        <td>Win 98SE+</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Netscape Navigator 9</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.0</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.1</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.1</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.2</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.2</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.3</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.3</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.4</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.4</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.5</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.5</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.6</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">1.6</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.7</td>
-                                        <td>Win 98+ / OSX.1+</td>
-                                        <td class="center">1.7</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.8</td>
-                                        <td>Win 98+ / OSX.1+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Gecko</td>
-                                        <td>Epiphany 2.20</td>
-                                        <td>Gnome</td>
-                                        <td class="center">1.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>Safari 1.2</td>
-                                        <td>OSX.3</td>
-                                        <td class="center">125.5</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>Safari 1.3</td>
-                                        <td>OSX.3</td>
-                                        <td class="center">312.8</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>Safari 2.0</td>
-                                        <td>OSX.4+</td>
-                                        <td class="center">419.3</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>Safari 3.0</td>
-                                        <td>OSX.4+</td>
-                                        <td class="center">522.1</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>OmniWeb 5.5</td>
-                                        <td>OSX.4+</td>
-                                        <td class="center">420</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>iPod Touch / iPhone</td>
-                                        <td>iPod</td>
-                                        <td class="center">420.1</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Webkit</td>
-                                        <td>S60</td>
-                                        <td>S60</td>
-                                        <td class="center">413</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 7.0</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 7.5</td>
-                                        <td>Win 95+ / OSX.2+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 8.0</td>
-                                        <td>Win 95+ / OSX.2+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 8.5</td>
-                                        <td>Win 95+ / OSX.2+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 9.0</td>
-                                        <td>Win 95+ / OSX.3+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 9.2</td>
-                                        <td>Win 88+ / OSX.3+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera 9.5</td>
-                                        <td>Win 88+ / OSX.3+</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Opera for Wii</td>
-                                        <td>Wii</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Nokia N800</td>
-                                        <td>N800</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Presto</td>
-                                        <td>Nintendo DS browser</td>
-                                        <td>Nintendo DS</td>
-                                        <td class="center">8.5</td>
-                                        <td class="center">C/A<sup>1</sup>
-                                        </td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>KHTML</td>
-                                        <td>Konqureror 3.1</td>
-                                        <td>KDE 3.1</td>
-                                        <td class="center">3.1</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>KHTML</td>
-                                        <td>Konqureror 3.3</td>
-                                        <td>KDE 3.3</td>
-                                        <td class="center">3.3</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>KHTML</td>
-                                        <td>Konqureror 3.5</td>
-                                        <td>KDE 3.5</td>
-                                        <td class="center">3.5</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeX">
-                                        <td>Tasman</td>
-                                        <td>Internet Explorer 4.5</td>
-                                        <td>Mac OS 8-9</td>
-                                        <td class="center">-</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>Tasman</td>
-                                        <td>Internet Explorer 5.1</td>
-                                        <td>Mac OS 7.6-9</td>
-                                        <td class="center">1</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>Tasman</td>
-                                        <td>Internet Explorer 5.2</td>
-                                        <td>Mac OS 8-X</td>
-                                        <td class="center">1</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Misc</td>
-                                        <td>NetFront 3.1</td>
-                                        <td>Embedded devices</td>
-                                        <td class="center">-</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeA">
-                                        <td>Misc</td>
-                                        <td>NetFront 3.4</td>
-                                        <td>Embedded devices</td>
-                                        <td class="center">-</td>
-                                        <td class="center">A</td>
-                                    </tr>
-                                    <tr class="gradeX">
-                                        <td>Misc</td>
-                                        <td>Dillo 0.8</td>
-                                        <td>Embedded devices</td>
-                                        <td class="center">-</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="gradeX">
-                                        <td>Misc</td>
-                                        <td>Links</td>
-                                        <td>Text only</td>
-                                        <td class="center">-</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="gradeX">
-                                        <td>Misc</td>
-                                        <td>Lynx</td>
-                                        <td>Text only</td>
-                                        <td class="center">-</td>
-                                        <td class="center">X</td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>Misc</td>
-                                        <td>IE Mobile</td>
-                                        <td>Windows Mobile 6</td>
-                                        <td class="center">-</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeC">
-                                        <td>Misc</td>
-                                        <td>PSP browser</td>
-                                        <td>PSP</td>
-                                        <td class="center">-</td>
-                                        <td class="center">C</td>
-                                    </tr>
-                                    <tr class="gradeU">
-                                        <td>Other browsers</td>
-                                        <td>All others</td>
-                                        <td>-</td>
-                                        <td class="center">-</td>
-                                        <td class="center">U</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
         <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+
 <script>
+
+            $("form").submit(function () {
+
+                var this_master = $(this);
+
+                this_master.find('input[type="checkbox"]').each( function () {
+                    var checkbox_this = $(this);
+
+
+                    if( checkbox_this.is(":checked") == true ) {
+                        checkbox_this.attr('value','1');
+                    } else {
+                        checkbox_this.prop('checked',true);
+                        //DONT' ITS JUST CHECK THE CHECKBOX TO SUBMIT FORM DATA    
+                        checkbox_this.attr('value','0');
+                    }
+                })
+            })
             /*
             $('#sandbox-container input').datepicker({
                 format: "dd/mm/yyyy",

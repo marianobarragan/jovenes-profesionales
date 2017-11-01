@@ -167,7 +167,8 @@ VALUES (2,"Empresa3 S.A.","Actividad C","Cadete","Nivel X","Argentina",'2017-07-
 
 SELECT p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,objetivo_laboral, count(el.id_experiencia_laboral) as 'cantidad de trabajos'
 from personas p join sexo s on (p.id_sexo = s.id_sexo) join estado_civil ec on (ec.id_estado_civil = p.id_estado_civil) left join experiencia_laboral el on (el.id_persona = p.id_persona)
-group by p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,p.objetivo_laboral;
-    
+group by p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,p.objetivo_laboral
+order by p.id_persona;
+
 
 # SET foreign_key_checks = 0; drop table personas;  SET foreign_key_checks = 1;
