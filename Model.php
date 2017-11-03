@@ -80,14 +80,18 @@ class Model{
 			or die ('Error conectandose a la base de datos' . mysqli_connect_error());
 
 
-		$query = "SELECT p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,objetivo_laboral, count(el.id_experiencia_laboral) as 'cantidad de trabajos'  from personas p join sexo s on (p.id_sexo = s.id_sexo) join estado_civil ec on (ec.id_estado_civil = p.id_estado_civil) left join experiencia_laboral el on (el.id_persona = p.id_persona) group by p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,objetivo_laboral";
-
+		$query = "SELECT p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,objetivo_laboral, count(el.id_experiencia_laboral) as 'cantidad de trabajos'  from personas p join sexo s on (p.id_sexo = s.id_sexo) join estado_civil ec on (ec.id_estado_civil = p.id_estado_civil) left join experiencia_laboral el on (el.id_persona = p.id_persona) group by p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,objetivo_laboral order by p.id_persona";
+		
 		if ($stmt = $con->prepare($query)) {
 		    $stmt->execute();
 		    $stmt->bind_result($nombre, $apellido, $descripcion, $descripcion1, $dni, $telefono_fijo, $telefono_celular, $pais, $objetivo_laboral, $id_experiencia_laboral);
 
-		            echo "<table>";
-		            echo "<tr>";
+		            
+		            $encabezado = "<table width=/100%/ class=/table table-striped table-bordered table-hover/  >";
+		            echo str_replace('/', '"', $encabezado);
+		            //echo "<table>";
+		            echo "<thead>";
+		            	echo "<tr>";
 		                echo "<th>Nombre</th>";
 		                echo "<th>Apellido</th>";
 		                echo "<th>Sexo</th>";
@@ -98,10 +102,13 @@ class Model{
 		                echo "<th>País</th>";
 		                echo "<th>Objetivo Laboral</th>";
 						echo "<th>Cantidad de trabajos</th>";                
-		            echo "</tr>";
+		            	echo "</tr>";
+		            echo "</thead>";
 		    while ($stmt->fetch()) {
 		        
-		            echo "<tr>";
+		    		$encabezado = "<tr class=/odd gradeX/>";
+					echo str_replace('/', '"', $encabezado);
+		            //echo "<tr>";
 
 		                echo "<td>" . $nombre . "</td>";
 		                echo "<td>" . $apellido . "</td>";
@@ -195,7 +202,7 @@ class Model{
 				"','" .$e['inicio_estudios']. 
 				"'," .$e['fin_estudios']. 
 			") ";
-			echo $query;
+			
 			if ($stmt = $con->prepare($query)) {
 				
 				$stmt->execute();

@@ -65,7 +65,7 @@ INSERT INTO `jovenes_profesionales`.`personas`  (nombre,apellido,id_sexo,id_esta
 VALUES ("Lucia","Paz",2,1,38451234,49336251,1513468557,"Conseguir un trabajo que me permita poder mantener a mi familia","Argentina","Entre Ríos","Paraná","Rosas",1760);
 
 INSERT INTO `jovenes_profesionales`.`personas`  (nombre,apellido,id_sexo,id_estado_civil,dni,telefono_fijo,telefono_celular,objetivo_laboral,pais,provincia,ciudad,calle,altura)
-VALUES ("Martín","Soyar",3,3,34784515,43124652,1542516253,"Poder progresar dentro de una PyME","Argentina","Salta","Salta","Belgrano Av.",1810);
+VALUES ("Fabricio","Soyar",3,3,34784515,43124652,1542516253,"Poder progresar dentro de una PyME","Argentina","Salta","Salta","Belgrano Av.",1810);
 
 
 CREATE TABLE IF NOT EXISTS  `jovenes_profesionales`.`estudios` (
@@ -169,6 +169,3 @@ SELECT p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_cel
 from personas p join sexo s on (p.id_sexo = s.id_sexo) join estado_civil ec on (ec.id_estado_civil = p.id_estado_civil) left join experiencia_laboral el on (el.id_persona = p.id_persona)
 group by p.nombre,p.apellido,s.sexo,ec.estado_civil,dni,telefono_fijo,telefono_celular,p.pais,p.objetivo_laboral
 order by p.id_persona;
-
-
-# SET foreign_key_checks = 0; drop table personas;  SET foreign_key_checks = 1;

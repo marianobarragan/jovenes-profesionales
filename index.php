@@ -96,7 +96,7 @@
       	<!--<img src="LOGO_BuenosAiresCiudad_REF.jpg" alt="Logo" width="200">-->
       </div>
       <div class="col-sm-6 text-middle"> 
-      	<img src="LOGO_BuenosAiresCiudad_REF.jpg" alt="Logo" width="200">
+      	<a href="index.php"><img src="LOGO_BuenosAiresCiudad_REF.jpg" alt="Logo" width="200"></a>
       </div>
       <!--
       <ul class="nav navbar-nav">
@@ -131,8 +131,8 @@
         información básica de la expo y un formulario. Los interesados en concurrir deberán ingresar sus datos
         laborales en dicho formulario.</p>
         
-        <button class="btn btn-info" type="submit" style=" padding: 7px;"> Ver otros usuarios registrados</button>
-        
+        <a href="usuarios.php"  class="btn btn-info" type="submit" style=" padding: 7px;"> Ver otros usuarios registrados</a>
+
       <hr>
       <h3>Registrate!</h3>
 
@@ -248,10 +248,9 @@
                         <h1 style="padding-top: 0.5cm">Idiomas</h1>
                         <h2> </h2>
                         <div>
-                            <button class="btn btn-primary" type="button" onClick="addRow('data_table_idioma')" style="padding: 3px;"> (+) Agregar Idioma  </button>
+                            <button class="btn btn-info" type="button" onClick="addRow('data_table_idioma')" style="padding: 3px;"> (+) Agregar Idioma  </button>
                             <button class="btn btn-info" type="button" onClick="deleteRow('data_table_idioma')" style="padding: 3px;"> (-) Eliminar Idioma  </button>
-                            <input type="button" value="Agregar Idioma" onClick="addRow('data_table_idioma')" /> 
-                                <input type="button" value="Eliminar Idiomas seleccionados" onClick="deleteRow('data_table_idioma')"  /> 
+                           
                         </div>
                         <h2> </h2>
 
@@ -285,10 +284,9 @@
                     <h1 style="padding-top: 2cm">Experiencia Laboral</h1>
                     <h3> </h3>
                     <div>
-                        <button class="btn btn-primary" type="button" onClick="addRow('data_table_experiencia')" style="padding: 3px;"> (+) Agregar Experiencia  </button>
-                        <button class="btn btn-primary" type="button" onClick="deleteRow('data_table_experiencia')" style="padding: 3px;"> (-) Eliminar Experiencia  </button>
-                        <input type="button" value="Agregar Experiencia Laboral" onClick="addRow('data_table_experiencia')" /> 
-                        <input type="button" value="Eliminar Experiencia Laboral" onClick="deleteRow('data_table_experiencia')"  /> 
+                        <button class="btn btn-info" type="button" onClick="addRow('data_table_experiencia')" style="padding: 3px;"> (+) Agregar Experiencia  </button>
+                        <button class="btn btn-info" type="button" onClick="deleteRow('data_table_experiencia')" style="padding: 3px;"> (-) Eliminar Experiencia  </button>
+                       
                     </div>
                     <div class="col-lg-12" style = "overflow: auto;display:inline-block;">
                         <table id="data_table_experiencia" class="form" border="0" style="border-collapse: separate; border-spacing: 15px;">
@@ -357,8 +355,7 @@
                     <div>
                         <button class="btn btn-info" type="button" onClick="addRow('data_table_estudios')" style="padding: 3px;"> (+) Agregar Estudio  </button>
                         <button class="btn btn-info" type="button" onClick="deleteRow('data_table_estudios')" style="padding: 3px;"> (-) Eliminar Estudio  </button>
-                        <input type="button" value="Agregar Estudios" onClick="addRow('data_table_estudios')" /> 
-                        <input type="button" value="Eliminar Estudios" onClick="deleteRow('data_table_estudios')"  /> 
+                        
                     </div>
                     <h2> </h2>
                     <div class="col-lg-12" style = "overflow: auto">
@@ -396,11 +393,7 @@
                     <!-- /.panel -->
                     <div style = "padding-top: 3cm">
                         <!--
-                        <input class="submit" type="submit" value="Confirmar Inscripción" onClick="hacerAlgo()" style="float: right;">
-                        <button type="button" class="btn btn-primary" type="submit" style="float: right;" >Confirmar Inscripción</button>
                         
-
-                        <input type="button" class="btn btn-primary" value="Confirmar Inscripción" style="float: right;">
                         
 -->
                     </div>
@@ -409,13 +402,7 @@
             <!-- /.row -->
                 </div>
                 <!-- /.col-lg-12 
-                <button class="btn btn-success" type="submit" value=" Send"  style="float: right;"/>
-                <input class="submit" type="submit" value="Confirm &raquo;" style="float: left;"/>
                 
-                <input type="button" class="btn btn-primary" value="Confirmar Inscripción" style="float: right;">
-                
-                <button type="button" class="btn btn-primary" style="float: right;">Primary</button>
-                <button class="btn btn-success" type="submit" value=" Botoncito"  />
                 -->
                 <button class="btn btn-success" type="submit" style="float: right; padding: 10px;"> Registrarme!</button>
                 
@@ -494,12 +481,7 @@ jQuery.validator.addMethod("esFechaValida", function(value, element) {
     }, "* Ingrese una fecha que respete el formato AAAA-MM-DD");
 
 
-/*$("#registro").validate({
-    rules : {
-        direccion_altura : { greaterThanZero : true }
-    }
-});
-*/
+
 
 $( "#registro" ).validate({
   rules: {
