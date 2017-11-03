@@ -137,7 +137,7 @@
       <h3>Registrate!</h3>
 
           <div class="col-lg-12">
-
+        <p>Los campos con * son obligatorios!</p>
         <div id="page-wrapper">
             <!--
 			<div class="row">
@@ -160,15 +160,15 @@
                                 <div class="col-lg-5">
                                     
                                         <div class="form-group">
-                                            <label>DNI</label>
+                                            <label>DNI *</label>
                                             <input class="form-control" name="dni" placeholder="Ingrese el número" required="required"  >Sin comas ni guiones.</p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Apellido</label>
+                                            <label>Apellido *</label>
                                             <input class="form-control" name="apellido" placeholder="Ingrese el apellido" required="required" type="text">
                                         </div>
                                         <div class="form-group">
-                                            <label>Nombre</label>
+                                            <label>Nombre *</label>
                                             <input class="form-control" name="nombre" placeholder="Ingrese el nombre" required="required">
                                         </div>
                                         <div class="form-group">
@@ -203,35 +203,35 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Fecha de nacimiento</label>
+                                            <label>Fecha de nacimiento *</label>
                                                 <input type="text" name= "fecha_nacimiento" class="form-control" placeholder="Formato AAAA-MM-DD" required="required">  
                                         </div>
                                         <div class="form-group">
-                                            <label>Telefono Celular</label>
+                                            <label>Telefono Celular *</label>
                                             <input class="form-control" name="telefono_celular" placeholder="Ingrese el telefono celular">
                                         </div>
                                         <div class="form-group">
-                                            <label>Telefono Particular</label>
+                                            <label>Telefono Particular *</label>
                                             <input class="form-control" name="telefono_fijo" placeholder="Ingrese el telefono particular" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label>Dirección</label>
+                                            <label>Dirección *</label>
                                             <input class="form-control" name="direccion_calle" placeholder="Ingrese la dirección particular" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label>Altura</label>
+                                            <label>Altura *</label>
                                             <input class="form-control" name="direccion_altura" placeholder="Ingrese la altura del domicilio" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label>Pais</label>
+                                            <label>Pais *</label>
                                             <input class="form-control" name="direccion_pais" placeholder="Ingrese el país de la dirección" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label>Provincia</label>
+                                            <label>Provincia *</label>
                                             <input class="form-control" name="direccion_provincia" placeholder="Ingrese la provincia de la dirección" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label>Ciudad</label>
+                                            <label>Ciudad *</label>
                                             <input class="form-control" name="direccion_ciudad" placeholder="Ingrese la ciudad de la dirección" required="required">
                                         </div>
                                         
@@ -265,7 +265,7 @@
                                             <input required="required" name="chk[]" checked="checked" type="checkbox">
                                         </td>
                                         <td>
-                                            <label>Idioma</label>
+                                            <label>Idioma *</label>
                                             <input required="required" name="idioma_nombre[]" type="text">
                                         </td>
                                         <td>
@@ -297,27 +297,27 @@
                                     </td>
 
                                     <td >
-                                        <label style="display: inline-block">Empresa</label>
+                                        <label style="display: inline-block">Empresa *</label>
                                         <input required="required" name="experiencia_laboral_empresa[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Actividad de la empresa</label>
+                                        <label>Actividad de la empresa *</label>
                                         <input required="required" name="experiencia_laboral_actividad[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Puesto</label>
+                                        <label>Puesto *</label>
                                         <input required="required" name="experiencia_laboral_puesto[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Nivel</label>
+                                        <label>Nivel *</label>
                                         <input required="required" name="experiencia_laboral_nivel[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Pais</label>
+                                        <label>Pais *</label>
                                         <input required="required" name="experiencia_laboral_pais[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Inicio Actividad</label>
+                                        <label>Inicio Actividad *</label>
                                         <input required="required" name="experiencia_laboral_inicio_actividad[]" type="text" placeholder="Formato AAAA-MM-DD">
                                     </td>
                                     <td>
@@ -325,11 +325,11 @@
                                         <input name="experiencia_laboral_fin_actividad[]" type="text" placeholder="Formato AAAA-MM-DD">
                                     </td>
                                     <td>
-                                        <label>Área del puesto</label>
+                                        <label>Área del puesto *</label>
                                         <input required="required" name="experiencia_laboral_area_del_puesto[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Descripción del trabajo</label>
+                                        <label>Descripción del trabajo *</label>
                                         <input required="required" name="experiencia_laboral_descripcion[]" type="text">
                                     </td>
                                     <!--
@@ -339,11 +339,11 @@
                                     </td>
                                     -->
                                     <td>
-                                        <label>Cantidad de personas a cargo</label>
+                                        <label>Cantidad de personas a cargo *</label>
                                         <input required="required" name="experiencia_laboral_cantidad_personas_a_cargo[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Persona de referencia</label>
+                                        <label>Persona de referencia *</label>
                                         <input required="required" name="experiencia_laboral_nombre_persona_de_referencia[]" type="text" >
                                     </td>
                                 </tr>
@@ -367,19 +367,19 @@
                                     </td>
 
                                     <td >
-                                        <label >Casa de estudios</label>
+                                        <label >Casa de estudios *</label>
                                         <input required="required" name="estudio_casa_de_estudios[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Nivel</label>
+                                        <label>Nivel *</label>
                                         <input required="required" name="estudio_nivel[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Especialidad</label>
+                                        <label>Especialidad *</label>
                                         <input required="required" name="estudio_especialidad[]" type="text">
                                     </td>
                                     <td>
-                                        <label>Inicio de estudios</label>
+                                        <label>Inicio de estudios *</label>
                                         <input required="required" name="estudio_inicio_estudios[]" type="text" placeholder="Formato AAAA-MM-DD">
                                     </td>
                                     <td>
