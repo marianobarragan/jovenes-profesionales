@@ -22,7 +22,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
+  <script src="js/jquery.validate.js"></script>  
+
+  <script type="text/javascript" src="js/localization/messages_es_AR.js"> </script>
+  <script>
+        $("#registro").validate();
+  </script>
   <style>
+    /*
+  .errorClass {
+    color: red;
+      background-color: #acf;
+  }
+  */
+  .error {
+    color: red;
+    
+  }
+
+
+
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -30,13 +49,13 @@
     }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    /*.row.content {height: 450px}*/
+    .row.content {height: auto}
     
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-    /*  background-color: #f1f1f1;*/
-      height: 100%;
+      background-color: #f1f1f1;
+      height: 2200px;
     }
     
     /* Set black background color, white text and some padding */
@@ -64,9 +83,7 @@
     <!--  <div id='logo' style='background:url("LOGO_BuenosAiresCiudad_REF.jpg")'>-->
     	
     </div>
-    	<!--
-       <img src="http://festivalesanteriores.buenosaires.gob.ar/bafici/home10/press/logos/LOGO_BuenosAiresCiudad_REF.jpg" alt="Flowers in Chania">
-       -->
+    	
        
 
        
@@ -113,6 +130,9 @@
         La promoción de dicho evento se realizará a través de una landing page, que mostrará la
         información básica de la expo y un formulario. Los interesados en concurrir deberán ingresar sus datos
         laborales en dicho formulario.</p>
+        
+        <button class="btn btn-info" type="submit" style=" padding: 7px;"> Ver otros usuarios registrados</button>
+        
       <hr>
       <h3>Registrate!</h3>
 
@@ -128,7 +148,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <form role="form" action="db-connection" class="register" method="POST">
+                <form role="form" action="db-connection" id="registro" class="register" method="POST">
                 <div class="col-lg-12">
                     <div class="panel panel-green" >
                         <!--
@@ -141,12 +161,11 @@
                                     
                                         <div class="form-group">
                                             <label>DNI</label>
-                                            <input class="form-control" name="dni" placeholder="Ingrese el número" required="required">
-                                            <p class="help-block">Sin comas ni guiones.</p>
+                                            <input class="form-control" name="dni" placeholder="Ingrese el número" required="required"  >Sin comas ni guiones.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Apellido</label>
-                                            <input class="form-control" name="apellido" placeholder="Ingrese el apellido" required="required">
+                                            <input class="form-control" name="apellido" placeholder="Ingrese el apellido" required="required" type="text">
                                         </div>
                                         <div class="form-group">
                                             <label>Nombre</label>
@@ -185,7 +204,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Fecha de nacimiento</label>
-                                                <input type="text" class="form-control" placeholder="Formato AAAA-MM-DD" required="required">  
+                                                <input type="text" name= "fecha_nacimiento" class="form-control" placeholder="Formato AAAA-MM-DD" required="required">  
                                         </div>
                                         <div class="form-group">
                                             <label>Telefono Celular</label>
@@ -229,6 +248,8 @@
                         <h1 style="padding-top: 0.5cm">Idiomas</h1>
                         <h2> </h2>
                         <div>
+                            <button class="btn btn-primary" type="button" onClick="addRow('data_table_idioma')" style="padding: 3px;"> (+) Agregar Idioma  </button>
+                            <button class="btn btn-info" type="button" onClick="deleteRow('data_table_idioma')" style="padding: 3px;"> (-) Eliminar Idioma  </button>
                             <input type="button" value="Agregar Idioma" onClick="addRow('data_table_idioma')" /> 
                                 <input type="button" value="Eliminar Idiomas seleccionados" onClick="deleteRow('data_table_idioma')"  /> 
                         </div>
@@ -264,6 +285,8 @@
                     <h1 style="padding-top: 2cm">Experiencia Laboral</h1>
                     <h3> </h3>
                     <div>
+                        <button class="btn btn-primary" type="button" onClick="addRow('data_table_experiencia')" style="padding: 3px;"> (+) Agregar Experiencia  </button>
+                        <button class="btn btn-primary" type="button" onClick="deleteRow('data_table_experiencia')" style="padding: 3px;"> (-) Eliminar Experiencia  </button>
                         <input type="button" value="Agregar Experiencia Laboral" onClick="addRow('data_table_experiencia')" /> 
                         <input type="button" value="Eliminar Experiencia Laboral" onClick="deleteRow('data_table_experiencia')"  /> 
                     </div>
@@ -323,7 +346,7 @@
                                     </td>
                                     <td>
                                         <label>Persona de referencia</label>
-                                        <input required="required" name="experiencia_laboral_nombre_persona_de_referencia[]" type="text">
+                                        <input required="required" name="experiencia_laboral_nombre_persona_de_referencia[]" type="text" >
                                     </td>
                                 </tr>
                             </tbody>
@@ -332,6 +355,8 @@
                     <h1 style="padding-top: 3cm">Estudios Previos</h1>
                     <h2> </h2>
                     <div>
+                        <button class="btn btn-info" type="button" onClick="addRow('data_table_estudios')" style="padding: 3px;"> (+) Agregar Estudio  </button>
+                        <button class="btn btn-info" type="button" onClick="deleteRow('data_table_estudios')" style="padding: 3px;"> (-) Eliminar Estudio  </button>
                         <input type="button" value="Agregar Estudios" onClick="addRow('data_table_estudios')" /> 
                         <input type="button" value="Eliminar Estudios" onClick="deleteRow('data_table_estudios')"  /> 
                     </div>
@@ -383,13 +408,27 @@
                     </div>
             <!-- /.row -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-lg-12 
+                <button class="btn btn-success" type="submit" value=" Send"  style="float: right;"/>
+                <input class="submit" type="submit" value="Confirm &raquo;" style="float: left;"/>
+                
                 <input type="button" class="btn btn-primary" value="Confirmar Inscripción" style="float: right;">
-                <input class="submit" type="submit" value="Confirm &raquo;" />
+                
+                <button type="button" class="btn btn-primary" style="float: right;">Primary</button>
+                <button class="btn btn-success" type="submit" value=" Botoncito"  />
+                -->
+                <button class="btn btn-success" type="submit" style="float: right; padding: 10px;"> Registrarme!</button>
+                
+                
+                
+                
                 </form>
+
             </div>
             <!-- /.row -->
-        </div>
+        
+		</div>
+		<div class="col-sm-2 sidenav">		</div>
       <!--
       <div class="well">
         <p>ADS</p>
@@ -402,7 +441,7 @@
 
   </div>
 </div>
-<?php var_dump($_POST); ?><br>
+
 
 <footer class="container-fluid text-center">
   <p>2017</p>
@@ -418,13 +457,95 @@
 
 <script>
 
+
+var numerico = {
+        required: true,
+        number: true
+    };
+
+var nombre_propio = {
+        required: true,
+        minlength: 2
+    };
+
+var fecha = {
+    esFechaValida : true,
+    required:true
+};
+
+function isValidDate(dateString) {
+      var regEx = /^\d{4}-\d{2}-\d{2}$/;
+      if(!dateString.match(regEx)) return false;  // Invalid format
+      var d = new Date(dateString);
+      if(!d.getTime()) return false; // Invalid date (or this could be epoch)
+      return d.toISOString().slice(0,10) === dateString;
+}
+
+jQuery.validator.addMethod("greaterThanZero", function(value, element) {
+    return this.optional(element) || (parseFloat(value) > 0);
+}, "* Amount must be greater than zero");
+
+jQuery.validator.addMethod("esFechaValida", function(value, element) {
+        // yyyy-mm-dd
+        var re = /^\d{4}-\d{2}-\d{2}$/;
+
+        // valid if optional and empty OR if it passes the regex test
+        return (this.optional(element) && value=="") || re.test(value);
+    }, "* Ingrese una fecha que respete el formato AAAA-MM-DD");
+
+
+/*$("#registro").validate({
+    rules : {
+        direccion_altura : { greaterThanZero : true }
+    }
+});
+*/
+
+$( "#registro" ).validate({
+  rules: {
+    apellido: nombre_propio,
+    nombre: nombre_propio,
+    dni: numerico,
+    fecha_nacimiento: fecha,
+    telefono_celular:numerico,
+    telefono_fijo:numerico,
+    direccion_calle:nombre_propio,
+    direccion_altura:numerico,
+    direccion_pais:nombre_propio,
+    direccion_provincia:nombre_propio,
+    direccion_ciudad:nombre_propio,
+    "idioma_nombre[]":nombre_propio,
+    "experiencia_laboral_empresa[]":nombre_propio,
+    "experiencia_laboral_actividad[]":nombre_propio,
+    "experiencia_laboral_puesto[]":nombre_propio,
+    "experiencia_laboral_nivel[]":nombre_propio,
+    "experiencia_laboral_pais[]":nombre_propio,
+    "experiencia_laboral_inicio_actividad[]":fecha,
+    "experiencia_laboral_fin_actividad[]": {esFechaValida : true},
+    "experiencia_laboral_area_del_puesto[]":nombre_propio,
+    "experiencia_laboral_descripcion[]":nombre_propio,
+    "experiencia_laboral_cantidad_personas_a_cargo[]":numerico,
+    "experiencia_laboral_nombre_persona_de_referencia[]":nombre_propio,
+    
+    "estudio_casa_de_estudios[]":nombre_propio,
+    "estudio_nivel[]":nombre_propio,
+    "estudio_especialidad[]":nombre_propio,
+    "estudio_inicio_estudios[]":fecha,
+    "estudio_fin_estudios[]":{esFechaValida:true}
+    
+    
+  }
+});
+
+
+
+
             $("form").submit(function () {
 
                 var this_master = $(this);
 
                 this_master.find('input[type="checkbox"]').each( function () {
                     var checkbox_this = $(this);
-
 
                     if( checkbox_this.is(":checked") == true ) {
                         checkbox_this.attr('value','1');
@@ -435,6 +556,8 @@
                     }
                 })
             })
+
+            
             /*
             $('#sandbox-container input').datepicker({
                 format: "dd/mm/yyyy",
