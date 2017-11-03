@@ -404,8 +404,9 @@
                 <!-- /.col-lg-12 
                 
                 -->
-                <button class="btn btn-success" type="submit" style="float: right; padding: 10px;"> Registrarme!</button>
-                
+
+                <button class="btn btn-success" type="submit" style="float: right; padding: 10px; margin-top: 10px;"> Registrarme!</button>
+                <button class="btn btn-warning" type="reset" id="limpiar_button" style="float: right; padding: 10px; margin-right:22px; margin-top: 10px; "> Borrar datos ingresados</button>
                 
                 
                 
@@ -431,7 +432,7 @@
 
 
 <footer class="container-fluid text-center">
-  <p>2017</p>
+  <p>Buenos Aires Ciudad - 2017</p>
 </footer>
 
 </body>
@@ -481,7 +482,11 @@ jQuery.validator.addMethod("esFechaValida", function(value, element) {
     }, "* Ingrese una fecha que respete el formato AAAA-MM-DD");
 
 
+$("#limpiar_button").click(
 
+
+
+    );
 
 $( "#registro" ).validate({
   rules: {
